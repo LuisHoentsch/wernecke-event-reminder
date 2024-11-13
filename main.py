@@ -47,8 +47,8 @@ def send_mail(events):
     from email.mime.multipart import MIMEMultipart
 
     # Email credentials
-    sender_email = os.environ["sender_email"]
-    receiver_email = os.environ["receiver_email"]
+    sender_email = os.environ["SENDER_EMAIL"]
+    receiver_email = os.environ["RECEIVER_EMAIL"]
 
     # Create message
     message = MIMEMultipart()
@@ -63,7 +63,7 @@ def send_mail(events):
     # Connect to SMTP server
     server = smtplib.SMTP("mail.gmx.net", 587)
     server.starttls()  # Secure the connection
-    server.login(sender_email, os.environ["email_password"])
+    server.login(sender_email, os.environ["EMAIL_PASSWORD"])
 
     # Send email
     server.sendmail(sender_email, receiver_email, message.as_string())
