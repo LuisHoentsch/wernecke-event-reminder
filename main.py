@@ -99,6 +99,7 @@ def main():
     # save all events
     with open("events.txt", "w") as f:
         for event in events:
+            print(f"Event: {event[0]}, {event[1]}")
             f.write(str(custom_hash(event[0] + event[1])) + "\n")
 
 
