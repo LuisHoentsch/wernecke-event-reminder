@@ -4,9 +4,6 @@ from storage import load_hashes, save_events, custom_hash
 from notifier import send_mail
 
 def main():
-    """
-    Main entry point for the event scraper script.
-    """
     print("Running script")
 
     # get all events from website

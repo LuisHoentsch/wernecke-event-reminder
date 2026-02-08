@@ -10,4 +10,4 @@ def drop_twenclub_topten(events: List[Tuple[str, str]]) -> List[Tuple[str, str]]
     Returns:
         List[Tuple[str, str]]: Filtered list of events.
     """
-    return [event for event in events if "Twen-Club" != event[0] and "Top-Ten" != event[0]]
+    return [event for event in events if "Twen-Club - Tanzparty für Erwachsene" != event[0] and "Top-Ten" != event[0]]

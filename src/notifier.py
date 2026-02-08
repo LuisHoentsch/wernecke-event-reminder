@@ -15,10 +15,14 @@ def send_mail(events: List[Tuple[str, str]]):
     sender_email = os.environ.get("SENDER_EMAIL")
     receiver_email = os.environ.get("RECEIVER_EMAIL")
     email_password = os.environ.get("EMAIL_PASSWORD")
+    email_host = os.environ.get("EMAIL_HOST")
+    email_port = os.environ.get("EMAIL_PORT")
 
-    if not sender_email or not receiver_email or not email_password:
-        print("Missing email environment variables (SENDER_EMAIL, RECEIVER_EMAIL, EMAIL_PASSWORD). Skipping email.")
+    if not sender_email or not receiver_email or not email_password or not email_host:
+        print("Missing email environment variables (SENDER_EMAIL, RECEIVER_EMAIL, EMAIL_PASSWORD, EMAIL_HOST). Skipping email.")
         return
+    if not email_port:
+        email_port = 587
 
     # Create message
     message = MIMEMultipart()
@@ -32,7 +36,7 @@ def send_mail(events: List[Tuple[str, str]]):
 
     try:
         # Connect to SMTP server
-        server = smtplib.SMTP("mail.gmx.net", 587)
+        server = smtplib.SMTP(email_host, email_port)
         server.starttls()  # Secure the connection
         server.login(sender_email, email_password)
 
